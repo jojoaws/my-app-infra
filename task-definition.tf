@@ -19,6 +19,10 @@ resource "aws_ecs_task_definition" "app_task" {
         {
           name  = "QUEUE_URL"
           value = aws_sqs_queue.worker_queue.url
+        },
+        {
+          name  = "AWS_REGION"
+          value = var.aws_region
         }
       ]
 
@@ -63,6 +67,10 @@ resource "aws_ecs_task_definition" "worker_task" {
         {
           name  = "QUEUE_URL"
           value = aws_sqs_queue.worker_queue.url
+        },
+        {
+          name  = "AWS_REGION"
+          value = var.aws_region
         }
       ]
 
@@ -78,4 +86,3 @@ resource "aws_ecs_task_definition" "worker_task" {
     }
   ])
 }
-
