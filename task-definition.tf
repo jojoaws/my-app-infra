@@ -15,6 +15,13 @@ resource "aws_ecs_task_definition" "app_task" {
 
       essential = true
 
+      environment = [
+        {
+          name  = "QUEUE_URL"
+          value = aws_sqs_queue.worker_queue.url
+        }
+      ]
+
       portMappings = [
         {
           containerPort = 3000
@@ -51,6 +58,7 @@ resource "aws_ecs_task_definition" "worker_task" {
       image = "${aws_ecr_repository.worker_repo.repository_url}:latest"
 
       essential = true
+
       environment = [
         {
           name  = "QUEUE_URL"
