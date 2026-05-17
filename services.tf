@@ -44,7 +44,7 @@ resource "aws_ecs_service" "worker_service" {
     security_groups = [
       aws_security_group.ecs_sg.id
     ]
-      
+
     assign_public_ip = false
   }
 }

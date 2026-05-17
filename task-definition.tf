@@ -7,6 +7,7 @@ resource "aws_ecs_task_definition" "app_task" {
   memory = "512"
 
   execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
+  task_role_arn      = aws_iam_role.app_task_role.arn
 
   container_definitions = jsonencode([
     {
@@ -55,6 +56,7 @@ resource "aws_ecs_task_definition" "worker_task" {
   memory = "512"
 
   execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
+  task_role_arn      = aws_iam_role.worker_task_role.arn
 
   container_definitions = jsonencode([
     {
