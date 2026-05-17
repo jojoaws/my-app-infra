@@ -11,6 +11,9 @@ resource "aws_ecs_service" "app_service" {
       aws_subnet.private_subnet_1.id,
       aws_subnet.private_subnet_2.id
     ]
+    security_groups = [
+      aws_security_group.ecs_sg.id
+    ]
 
     assign_public_ip = false
   }
@@ -38,7 +41,10 @@ resource "aws_ecs_service" "worker_service" {
       aws_subnet.private_subnet_1.id,
       aws_subnet.private_subnet_2.id
     ]
-
+    security_groups = [
+      aws_security_group.ecs_sg.id
+    ]
+      
     assign_public_ip = false
   }
 }
